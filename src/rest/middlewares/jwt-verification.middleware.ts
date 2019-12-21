@@ -5,12 +5,12 @@ import config from '../../../config';
 
 @Service()
 export default class JwtVerificationMiddleware {
-  public excludedUrls = ['/login'];
+  public excludedUrls = ['/login.*', '/docs/.*'];
 
   constructor() {}
 
   use = (req: any, res: any, next: any) => {
-    if (this.excludedUrls.includes(req.originalUrl)) {
+    if (this.excludedUrls.some(url => new RegExp(`^${url}\/?$`).test(req.originalUrl))) {
       return next();
     }
 
