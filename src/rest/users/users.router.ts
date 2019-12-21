@@ -12,7 +12,7 @@ export default class UsersRouter {
   }
 
   @Get('/users')
-  getAll() {
+  getAll():Object {
     return this.usersOrchestrator.getAllUsers();
   }
 }
