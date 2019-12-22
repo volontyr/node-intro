@@ -15,4 +15,6 @@ export default class UsersRouter {
   getAll():Object {
     return this.usersOrchestrator.getAllUsers();
   }
+  // TODO: Here add post delete patch
+
 }

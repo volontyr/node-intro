@@ -7,6 +7,8 @@ import config from '../../config';
 @Service()
 export default class AuthService {
     public authenticate(usr: { email: string, password: string }): any {
+        // TODO: Authenticate refactoring -> read from users/users.repository
+        // Add to orcestrator
         const usersString = fs.readFileSync(process.env.DB_USERS, {
             encoding: 'utf8'
         });
