@@ -1,15 +1,17 @@
 import { Container } from 'typedi';
+import * as fs from 'fs';
 import express from 'express';
 import 'reflect-metadata';
 import { useExpressServer } from 'routing-controllers';
 import bodyParser from 'body-parser';
 import swaggerUi from 'swagger-ui-express';
-import swaggerJsdoc from 'swagger-jsdoc';
 
 import { UsersRouter } from './rest/users';
 import { AuthRouter } from './rest/auth';
-
 import { JwtVerificationMiddleware } from './rest/middlewares';
+import { SWAGGER_FILE } from './constants';
+
+const swaggerDocument = JSON.parse(fs.readFileSync(SWAGGER_FILE, 'utf8'));
 
 const authRouter = Container.get(AuthRouter);
 
@@ -34,26 +36,10 @@ useExpressServer(app, {
   middlewares: [JwtVerificationMiddleware]
 });
 
-// Swagger set up
-const swaggerOptions = {
-  definition: {
-    info: {
-      title: "Time to document that Express API you built",
-      version: "1.0.0"
-    },
-    servers: [
-      {
-        url: "http://localhost:8080"
-      }
-    ]
-  },
-  apis: ['./rest/auth/auth.router.js']
-};
-const swaggerSpecs = swaggerJsdoc(swaggerOptions);
 router.use('/docs', swaggerUi.serve);
 router.get(
   '/docs',
-  swaggerUi.setup(swaggerSpecs, {
+  swaggerUi.setup(swaggerDocument, {
     isExplorer: true
   })
 );
