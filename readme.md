@@ -5,6 +5,6 @@
 4. Create Closed endpoint DELETE /users/{id}
 5. Create entity university, Add controller, repository, service, orchestrator
 University = {id: uuid(), name:string, city:string}
-6. Create endpoints GET POST DELETE University
+6. Create endpoints GET POST PATCH DELETE University
 7. Create endpoint to assign User -> University
 
