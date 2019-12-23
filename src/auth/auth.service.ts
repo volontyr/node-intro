@@ -6,14 +6,7 @@ import config from '../../config';
 
 @Service()
 export default class AuthService {
-    public authenticate(usr: { email: string, password: string }): any {
-        // TODO: Authenticate refactoring -> read from users/users.repository
-        // Add to orcestrator
-        const usersString = fs.readFileSync(process.env.DB_USERS, {
-            encoding: 'utf8'
-        });
-        const {users} = JSON.parse(usersString);
-
+    public authenticate(usr: { email: string, password: string }, users: [any]): any {
         const user = users.find((user: any) => user.email === usr.email);
 
         if (!user) {

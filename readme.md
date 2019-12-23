@@ -1,5 +1,5 @@
 # Task
-1. Create Open endpoint /register in router Auth
+1. ~~Create Open endpoint /register in router Auth~~
 2. Create Closed endpoint POST /users to create user with all info
 3. Create Closed endpoint PATCH /users 
 4. Create Closed endpoint DELETE /users/{id}
