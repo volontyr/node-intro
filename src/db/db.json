@@ -1,1 +1,26 @@
-{"users":[{"name":"Alex","surname":"Volontyr","email":"alex.volontyr@gmail.com","password":"password"},{"name":"Dima","surname":"Ananasiev","email":"dmytro.anastasiev@gmail.com","password":"qwerty123"},{"name":"Alesha","surname":"Petrovich","email":"a@gmail.com","password":"qwerty123"},{"name":"Alesha","surname":"Petrovich","email":"a@gmail.com","password":"qwerty123"},{"name":"Alesha","surname":"Petrovich","email":"a@gmail.com","password":"qwerty123"}],"universities":[]}
+{
+  "users": [
+    {
+      "id": 0,
+      "name": "Alex",
+      "surname": "Volontyr",
+      "email": "alex.volontyr@gmail.com",
+      "password": "password"
+    },
+    {
+      "id": 1,
+      "name": "Dima",
+      "surname": "Ananasiev",
+      "email": "dmytro.anastasiev@gmail.com",
+      "password": "qwerty123"
+    },
+    {
+      "id": 2,
+      "name": "Alesha",
+      "surname": "Petrovich",
+      "email": "a@gmail.com",
+      "password": "qwerty123"
+    }
+  ],
+  "universities": []
+}

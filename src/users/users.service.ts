@@ -13,7 +13,12 @@ export default class UsersService {
   }
 
   public postUser(user: any): any {
-    // TODO Validate
+    const users = this.usersRepository.getAllUsers();
+    if (users.find(({email}) => {
+      return email === user.email;
+    })) {
+      return null
+    }
     return this.usersRepository.addUser(user);
   }
 
@@ -21,6 +26,13 @@ export default class UsersService {
     // TODO Validate
     const users = this.usersRepository.getAllUsers();
     // Find by id
+    const db_user = users.find(({id: db_id}) => {
+      return id == db_id
+    });
+    if (!db_user) {
+      return null
+    }
+    users[users.indexOf(db_user)] = {...user, 'id': id};
     // Update
     return this.usersRepository.saveAllUsers(users);
   }

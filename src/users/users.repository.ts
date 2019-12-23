@@ -4,7 +4,7 @@ import {Service} from 'typedi';
 @Service()
 export default class UsersRepository {
 
-  public getAllUsers(): any {
+  public getAllUsers(): [any] {
     const usersString = fs.readFileSync(process.env.DB_PATH, {
       encoding: 'utf8'
     });
