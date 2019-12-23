@@ -1,4 +1,3 @@
-import _ from 'lodash';
 import {Service} from 'typedi';
 
 import UsersRepository from './users.repository';
@@ -13,12 +12,24 @@ export default class UsersService {
     return this.usersRepository.getAllUsers();
   }
 
-  public register(user: any, users:[any]): any {
-    if (users.find(({email})=>{
-      return email === user.email;
-    })){
-      return null
-    }
-    return this.usersRepository.register(user);
+  public postUser(user: any): any {
+    // TODO Validate
+    return this.usersRepository.addUser(user);
   }
+
+  public patchUser(id: number, user: any): any {
+    // TODO Validate
+    const users = this.usersRepository.getAllUsers();
+    // Find by id
+    // Update
+    return this.usersRepository.saveAllUsers(users);
+  }
+
+  public deleteUser(id: number): any {
+    const users = this.usersRepository.getAllUsers();
+    // Find by id
+    // delete user
+    return this.usersRepository.saveAllUsers(users);
+  }
+
 }

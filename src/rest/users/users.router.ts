@@ -1,5 +1,5 @@
-import { Controller, Get } from 'routing-controllers';
-import { Container } from 'typedi';
+import {Controller, Get, Post, Patch, Delete, Body, Param} from 'routing-controllers';
+import {Container} from 'typedi';
 
 import UsersOrchestrator from './users.orchestrator';
 
@@ -12,9 +12,23 @@ export default class UsersRouter {
   }
 
   @Get('/users')
-  getAll():Object {
+  getAll(): Object {
     return this.usersOrchestrator.getAllUsers();
   }
-  // TODO: Here add post delete patch
+
+  @Post('/users')
+  post(@Body() user: any): Object {
+    return this.usersOrchestrator.postUser(user);
+  }
+
+  @Patch('/users/:id')
+  update(@Param("id") id: number, @Body() user: any): Object {
+    return this.usersOrchestrator.patchUser(id, user);
+  }
+
+  @Delete('/users/:id')
+  delete(@Param("id") id: number): Object {
+    return this.usersOrchestrator.deleteUser(id);
+  }
 
 }

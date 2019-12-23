@@ -1,6 +1,6 @@
-import { Service } from 'typedi';
+import {Service} from 'typedi';
 
-import { UsersService } from '../../users';
+import {UsersService} from '../../users';
 
 @Service()
 export default class UsersOrchestrator {
@@ -11,8 +11,16 @@ export default class UsersOrchestrator {
     return this.usersService.getAllUsers();
   }
 
-  public register(user: { email: string, name: string, surname: string, password: string }): any {
-    const users = this.usersService.getAllUsers();
-    return this.usersService.register(user, users);
+  public postUser(user: any): any {
+    return this.usersService.postUser(user);
   }
+
+  public patchUser(id: number, user: any): any {
+    return this.usersService.patchUser(id, user);
+  }
+
+  public deleteUser(id: number): any {
+    return this.usersService.deleteUser(id);
+  }
+
 }

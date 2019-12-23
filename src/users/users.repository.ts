@@ -10,16 +10,27 @@ export default class UsersRepository {
     });
     return JSON.parse(usersString).users;
   }
-
-  public register(user: Object): any {
+  public saveAllUsers(users:any): any {
     const dbStoreString = fs.readFileSync(process.env.DB_PATH, {
       encoding: 'utf8'
     });
     const dbStore = JSON.parse(dbStoreString);
-    dbStore.users.push(user);
+    dbStore.users = users;
     fs.writeFileSync(process.env.DB_PATH, JSON.stringify(dbStore), {
       encoding: 'utf8'
     });
-    return dbStore.users;
+    return users;
   }
+ public addUser(user:any): any {
+   const dbStoreString = fs.readFileSync(process.env.DB_PATH, {
+     encoding: 'utf8'
+   });
+   const dbStore = JSON.parse(dbStoreString);
+   dbStore.users.push(user);
+   fs.writeFileSync(process.env.DB_PATH, JSON.stringify(dbStore), {
+     encoding: 'utf8'
+   });
+   return dbStore.users;
+ }
+
 }

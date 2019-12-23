@@ -18,6 +18,6 @@ export default class AuthOrchestrator {
 
   public register(user: { email: string, password: string }): any {
     const users = this.userService.getAllUsers();
-    return this.userService.register(user, users);
+    return this.authService.register(user, users);
   }
 }
