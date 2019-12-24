@@ -14,7 +14,7 @@ export default class UsersService {
 
   public postUser(user: any): any {
     const users = this.usersRepository.getAllUsers();
-    if (users.find(({email}) => {
+    if (users.find(({email}: any) => {
       return email === user.email;
     })) {
       return null
@@ -26,7 +26,7 @@ export default class UsersService {
     // TODO Validate
     const users = this.usersRepository.getAllUsers();
     // Find by id
-    const db_user = users.find(({id: db_id}) => {
+    const db_user = users.find(({id: db_id}: any): any => {
       return id == db_id
     });
     if (!db_user) {

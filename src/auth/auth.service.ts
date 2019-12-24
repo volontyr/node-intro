@@ -1,4 +1,3 @@
-import * as fs from 'fs';
 import {Service} from 'typedi';
 import jwt from 'jsonwebtoken';
 
