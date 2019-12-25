@@ -1,16 +1,32 @@
 {
   "users": [
     {
+      "id": "1",
       "name": "Alex",
       "surname": "Volontyr",
       "email": "alex.volontyr@gmail.com",
       "password": "password"
     },
     {
+      "id": "2",
       "name": "Dima",
       "surname": "Ananasiev",
       "email": "dmytro.anastasiev@gmail.com",
       "password": "qwerty123"
+    },
+    {
+      "name": "Petrovich",
+      "surname": "KoKo",
+      "email": "petrovich@gmail.com",
+      "password": "qwerty123",
+      "university": "123"
+    }
+  ],
+  "universities": [
+    {
+      "id": "123",
+      "name": "KPI",
+      "city": "Kyiv"
     }
   ]
 }

@@ -57,7 +57,38 @@
           }
         }
       }
+    },
+    "/users": {
+      "get": {
+        "summary": "Get all users route",
+        "description": "Users list",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Authentication object with two parameters: auth and token",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "properties": {
+                    "auth": {
+                      "type": "boolean"
+                    },
+                    "token": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          }
+        }
+      }
     }
+
   },
   "components": {
     "responses": {

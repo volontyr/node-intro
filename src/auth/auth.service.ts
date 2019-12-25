@@ -8,7 +8,7 @@ import UsersRepository from "../users/users.repository";
 export default class AuthService {
   constructor(private readonly userRepository: UsersRepository) {}
 
-  public authenticate(usr: { email: string, password: string }, users: [any]): any {
+  public authenticate(usr: { email: string, password: string }, users: any[]): any {
     const user = users.find((user: any) => user.email === usr.email);
 
     if (!user) {
@@ -26,7 +26,7 @@ export default class AuthService {
     return {auth: true, token: token};
   }
 
-  public register(user: any, users: [any]): any {
+  public register(user: any, users: any[]): any {
     // Validate email isn't exist
     if (users.find(({email}) => {
       return email === user.email;

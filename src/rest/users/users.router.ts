@@ -17,17 +17,22 @@ export default class UsersRouter {
   }
 
   @Post('/users')
-  post(@Body() user: any): Object {
-    return this.usersOrchestrator.postUser(user);
+  createUser(@Body() user: any): Object {
+    return this.usersOrchestrator.createUser(user);
+  }
+
+  @Post('/users/:userId/assign/:universityId')
+  assignUser(@Param("userId") userId: string, @Param("universityId") universityId: string,): Object {
+    return this.usersOrchestrator.assign(userId, universityId);
   }
 
   @Patch('/users/:id')
-  update(@Param("id") id: number, @Body() user: any): Object {
-    return this.usersOrchestrator.patchUser(id, user);
+  updateUser(@Param("id") id: string, @Body() user: any): Object {
+    return this.usersOrchestrator.updateUser(id, user);
   }
 
   @Delete('/users/:id')
-  delete(@Param("id") id: number): Object {
+  deleteUser(@Param("id") id: string): Object {
     return this.usersOrchestrator.deleteUser(id);
   }
 

@@ -7,8 +7,9 @@ import bodyParser from 'body-parser';
 import swaggerUi from 'swagger-ui-express';
 
 import { UsersRouter } from './rest/users';
+import { UniversitiesRouter } from './rest/universities';
 import { AuthRouter } from './rest/auth';
-import { JwtVerificationMiddleware } from './rest/middlewares';
+import { JwtVerificationMiddleware, RequestLoggingMiddleware, ErrorHandlerMiddleware} from './rest/middlewares';
 import { SWAGGER_FILE } from './constants';
 
 const swaggerDocument = JSON.parse(fs.readFileSync(SWAGGER_FILE, 'utf8'));
@@ -18,10 +19,13 @@ const authRouter = Container.get(AuthRouter);
 const port = 8080;
 
 const jwtVerificationMiddleware = new JwtVerificationMiddleware();
+const requestLogger = new RequestLoggingMiddleware();
+const errorHandler = new ErrorHandlerMiddleware();
 
 // creates express app, registers all controller routes and returns you express app instance
 const app = express();
 
+app.use(requestLogger.use as express.RequestHandler);
 app.use(jwtVerificationMiddleware.use as express.RequestHandler);
 
 const router = express.Router();
@@ -31,9 +35,11 @@ router.use(bodyParser.json());
 router.use('/', authRouter.getRouter());
 
 app.use('/', router);
+
+app.use(errorHandler.use as express.RequestHandler);
 useExpressServer(app, {
-  controllers: [UsersRouter],
-  middlewares: [JwtVerificationMiddleware]
+  controllers: [UsersRouter, UniversitiesRouter],
+  // middlewares: [RequestLoggingMiddleware, JwtVerificationMiddleware]
 });
 
 router.use('/docs', swaggerUi.serve);

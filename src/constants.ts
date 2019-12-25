@@ -5,4 +5,4 @@ export const SWAGGER_FILE = path.resolve(
   '../../docs/swagger.json'
 );
 
-export const DB_FILE = path.resolve(__dirname, './db/users.json');
+export const DB_FILE = path.resolve(__dirname, './db/db.json');

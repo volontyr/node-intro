@@ -1,0 +1,1 @@
+export { default as UniversitiesRouter } from './universities.router';

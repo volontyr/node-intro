@@ -5,7 +5,7 @@ import config from '../../../config';
 
 @Service()
 export default class JwtVerificationMiddleware {
-  public excludedUrls = ['/login.*', '/docs/.*', '/register.*'];
+  public excludedUrls = ['/login.*', '/docs.*', '/register.*'];
 
   constructor() {}
 
