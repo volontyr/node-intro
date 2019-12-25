@@ -1,9 +1,8 @@
-import * as fs from 'fs';
 
+import * as fs from 'fs';
 import {Container} from 'typedi';
 import UsersService from './users.service';
 import * as path from "path";
-
 
 const usersService = Container.get(UsersService);
 
