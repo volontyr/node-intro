@@ -3,6 +3,7 @@ import jwt from 'jsonwebtoken';
 
 import config from '../../config';
 import UsersRepository from "../users/users.repository";
+import {v4 as uuid} from "uuid";
 
 @Service()
 export default class AuthService {
@@ -33,6 +34,13 @@ export default class AuthService {
     })) {
       return null
     }
-    return this.userRepository.addUser(user);
+    user.id = uuid();
+    const register_user =  this.userRepository.addUser(user);
+
+    const token = jwt.sign({id: register_user.id}, config.secret, {
+      expiresIn: 86400 // expires in 24 hours
+    });
+
+    return {token: token, ...register_user};
   }
 }

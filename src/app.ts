@@ -6,6 +6,7 @@ import { useExpressServer } from 'routing-controllers';
 import bodyParser from 'body-parser';
 import swaggerUi from 'swagger-ui-express';
 
+import cors  from 'cors';
 import { UsersRouter } from './rest/users';
 import { UniversitiesRouter } from './rest/universities';
 import { AuthRouter } from './rest/auth';
@@ -26,6 +27,7 @@ const errorHandler = new ErrorHandlerMiddleware();
 const app = express();
 
 app.use(requestLogger.use as express.RequestHandler);
+app.use(cors());
 app.use(jwtVerificationMiddleware.use as express.RequestHandler);
 
 const router = express.Router();

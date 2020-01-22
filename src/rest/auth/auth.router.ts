@@ -16,17 +16,17 @@ export default class AuthRouter extends BaseRouter {
   }
 
   private register = (req: any, res: any) => {
-    const users = this.authOrchestrator.register(req.body);
-    if (!users) {
+    const user = this.authOrchestrator.register(req.body);
+    if (!user) {
       return res.status(400).send({'error':'User already exist.'});
     }
-    return res.status(201).send(users)
+    return res.status(201).send(user)
   };
 
   private authenticate = (req: any, res: any) => {
     const authentication = this.authOrchestrator.authenticate(req.body);
     if (!authentication) {
-      res.status(404).send('User not found.');
+      res.status(401).send('User not found.');
       return;
     }
 
