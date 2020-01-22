@@ -32,7 +32,7 @@ export default class UsersRepository {
    fs.writeFileSync(process.env.DB_PATH || DB_FILE, JSON.stringify(dbStore), {
      encoding: 'utf8'
    });
-   return dbStore.user;
+   return user;
  }
 
 }
