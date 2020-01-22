@@ -24,7 +24,7 @@ export default class AuthService {
       expiresIn: 86400 // expires in 24 hours
     });
 
-    return {auth: true, token: token};
+    return {auth: true, token: token, ...user};
   }
 
   public register(user: any, users: any[]): any {
